@@ -1,0 +1,30 @@
+from abc import ABC, abstractmethod
+
+class Pessoa(ABC):   
+    def __init__(self, nome, email):
+        
+        #atributos
+        super().__init__()
+        self._nome = nome 
+        self._email = email
+            
+#getters e setters            
+    @property
+    def nome(self):
+        return self._nome        
+    
+    @nome.setter
+    def nome (self, novo_nome):
+        self._nome = novo_nome
+            
+    @property
+    def email(self):
+        return self._email
+    
+    @email.setter
+    def email (self, novo_email):
+        self._email = novo_email        
+        
+    @abstractmethod
+    def exibir_dados(self):
+        pass       
