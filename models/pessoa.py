@@ -3,12 +3,12 @@ from abc import ABC, abstractmethod
 class Pessoa(ABC):   
     def __init__(self, nome, email):
         
-        #atributos
+        # Atributos
         super().__init__()
         self._nome = nome 
         self._email = email
-            
-#getters e setters            
+                   
+#Getters e Setters            
     @property
     def nome(self):
         return self._nome        
