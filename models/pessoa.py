@@ -8,7 +8,7 @@ class Pessoa(ABC):
         self._nome = nome 
         self._email = email
                    
-#Getters e Setters            
+    #Getters e Setters            
     @property
     def nome(self):
         return self._nome        

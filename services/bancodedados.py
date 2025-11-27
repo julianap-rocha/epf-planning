@@ -7,7 +7,7 @@ def get_db_connection():
     conn = sqlite3.connect(db_path)
     return conn
 
-#Função para testar a conexão
+# Função para testar a conexão
 def verificar_conexao():
     try:
         conn = get_db_connection()
