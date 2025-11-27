@@ -1,37 +1,37 @@
-class Nota:
-    def __init__(self, materia, nome_prova, valor, id_usuario=None, id=None):
+class Falta:
+    def __init__(self, materia, data, quantidade, id_usuario=None, id=None):
         
         # Atributos
         self._id = id
         self._id_usuario = id_usuario
         self._materia = materia
-        self._nome_prova = nome_prova
-        self._valor = valor
+        self._data = data
+        self._quantidade = quantidade
 
     # Getters e Setters
     @property
     def materia(self):
         return self._materia
-
+    
     @materia.setter
     def materia(self, nova_materia):
         self._materia = nova_materia
-        
-    @property
-    def nome_prova(self):
-        return self._nome_prova
-
-    @nome_prova.setter
-    def nome_prova(self, novo_nome):
-        self._nome_prova = novo_nome
 
     @property
-    def valor(self):
-        return self._valor
+    def data(self):
+        return self._data
     
-    @valor.setter
-    def valor(self, novo_valor):
-        self._valor = novo_valor
+    @data.setter
+    def data(self, nova_data):
+        self._data = nova_data
+
+    @property
+    def quantidade(self):
+        return self._quantidade
+    
+    @quantidade.setter
+    def quantidade(self, nova_quantidade):
+        self._quantidade = nova_quantidade
     
     @property
     def id(self):
