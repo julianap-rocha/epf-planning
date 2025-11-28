@@ -20,7 +20,7 @@ class NotaService:
         conn.close()
 
     # Função pra listar as notas do aluno específico
-    def listar_por_aluno(self, id_usuario):
+    def listar_aluno(self, id_usuario):
         conn = get_db_connection()
         cursor = conn.cursor()
         cursor.execute(
@@ -37,7 +37,7 @@ class NotaService:
         return lista_notas
 
     # Função pra buscar uma nota específica
-    def buscar_por_id(self, id_nota):
+    def buscar_id(self, id_nota):
         conn = get_db_connection()
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM notas WHERE id = ?", (id_nota,))
