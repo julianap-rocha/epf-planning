@@ -56,7 +56,7 @@ class ProfessorService:
         conn.commit()
         conn.close()
         
-    # excluido o professor cadastrado    
+    # exclui um professor cadastrado   
     def excluir(self, id_prof):
         conn = get_db_connection()
         cursor = conn.cursor()
