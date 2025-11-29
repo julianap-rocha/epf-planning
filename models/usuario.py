@@ -8,7 +8,6 @@ class Usuario(Pessoa):
         # Atributos
         self._id = id
         self._senha = senha
-
         self._notas = []
         self._faltas = []
         self._professores = []
