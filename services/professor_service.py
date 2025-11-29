@@ -2,6 +2,7 @@ from models.professor import Professor
 from services.bancodedados import get_db_connection
 
 class ProfessorService:
+    
     # cadastra um novo professor
     def cadastrar(self, professor):
         conn = get_db_connection()
@@ -14,7 +15,7 @@ class ProfessorService:
         conn.close()
         
     # busca o professor que um determinado aluno cadastrou
-    def listar_por_aluno(self, id_usuario):
+    def listar_aluno(self, id_usuario):
         conn = get_db_connection()
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM professores WHERE id_usuario = ?", (id_usuario,))
@@ -35,7 +36,7 @@ class ProfessorService:
         return lista_profs
     
     # busca um professor por determinado id 
-    def buscar_por_id(self, id_prof):
+    def buscar_id(self, id_prof):
         conn = get_db_connection()
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM professores WHERE id = ?", (id_prof,))

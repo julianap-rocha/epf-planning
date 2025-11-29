@@ -11,8 +11,9 @@ class UsuarioService:
             conn = get_db_connection()
             cursor = conn.cursor()
             cursor.execute("""
-                           INSERT INTO usuarios (nome, email, senha)
-                           VALUES (?,?,?)""", (usuario.nome, usuario.email, usuario.senha))
+                INSERT INTO usuarios (nome, email, senha)
+                VALUES (?,?,?)
+            """, (usuario.nome, usuario.email, usuario.senha))
             conn.commit()
             conn.close()
             print("O Usuário foi cadastrado com sucesso!")
