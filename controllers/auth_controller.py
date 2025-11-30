@@ -3,6 +3,7 @@ from controllers.base_controller import BaseController
 from models.usuario import Usuario
 from services.usuario_service import UsuarioService
 
+
 class AuthController(BaseController):
     def __init__(self, app):
         super().__init__(app)

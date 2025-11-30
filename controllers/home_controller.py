@@ -2,6 +2,7 @@ from bottle import request
 from controllers.base_controller import BaseController
 from services.usuario_service import UsuarioService
 
+
 class HomeController(BaseController):
     def __init__(self, app):
         super().__init__(app)

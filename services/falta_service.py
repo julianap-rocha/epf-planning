@@ -1,8 +1,9 @@
 from models.falta import Falta
 from services.bancodedados import get_db_connection
 
+
 class FaltaService:
-    
+
     # Função pra cadastrar faltas
     def cadastrar(self, falta):
         conn = get_db_connection()
@@ -18,21 +19,22 @@ class FaltaService:
     def listar_aluno(self, id_usuario):
         conn = get_db_connection()
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM faltas WHERE id_usuario = ?", (id_usuario,))
+        cursor.execute(
+            "SELECT * FROM faltas WHERE id_usuario = ?", (id_usuario,))
         linhas = cursor.fetchall()
         conn.close()
 
         lista_faltas = []
         for l in linhas:
             nova_falta = Falta(
-                materia=l[2], 
-                data=l[3], 
-                quantidade=l[4], 
-                id_usuario=l[1], 
+                materia=l[2],
+                data=l[3],
+                quantidade=l[4],
+                id_usuario=l[1],
                 id=l[0]
             )
             lista_faltas.append(nova_falta)
-        
+
         return lista_faltas
 
     # Função pra buscar falta específica
@@ -42,7 +44,7 @@ class FaltaService:
         cursor.execute("SELECT * FROM faltas WHERE id = ?", (id_falta,))
         l = cursor.fetchone()
         conn.close()
-        
+
         if l:
             return Falta(materia=l[2], data=l[3], quantidade=l[4], id_usuario=l[1], id=l[0])
         return None

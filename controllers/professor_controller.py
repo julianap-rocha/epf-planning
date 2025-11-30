@@ -6,7 +6,7 @@ from services.professor_service import ProfessorService
 
 class ProfessorController(BaseController):
     def __init__(self, app):
-        super().__init_(app)
+        super().__init__(app)
         self.service = ProfessorService()
         self.setup_routes()
 

@@ -3,10 +3,10 @@ from services.bancodedados import get_db_connection
 
 
 class NotaService:
-    
+
     # Cadastrar a nota
     def cadastrar(self, nota):
-        
+
         # Verificar se a nota está entre 0 e 10
         if nota.valor < 0 or nota.valor > 10:
             print("Erro: A nota deve estar entre 0 e 10")
