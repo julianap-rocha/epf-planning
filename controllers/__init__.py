@@ -1,5 +1,9 @@
 from bottle import Bottle
-from controllers.user_controller import user_routes
+from controllers.auth_controller import AuthController
+from controllers.home_controller import HomeController
+from controllers.professor_controller import ProfessorController
 
 def init_controllers(app: Bottle):
-    app.merge(user_routes)
+    AuthController(app)
+    HomeController(app)
+    ProfessorController(app)
