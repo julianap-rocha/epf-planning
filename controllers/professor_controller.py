@@ -2,12 +2,14 @@ from bottle import request
 from controllers.base_controller import BaseController
 from models.professor import Professor
 from services.professor_service import ProfessorService
+from services.usuario_service import UsuarioService
 
 
 class ProfessorController(BaseController):
     def __init__(self, app):
         super().__init__(app)
         self.service = ProfessorService()
+        self.usuario_service = UsuarioService()
         self.setup_routes()
 
     def setup_routes(self):
@@ -23,12 +25,16 @@ class ProfessorController(BaseController):
         uid = request.get_cookie("user_session", secret='minha_chave_secreta')
         return int(uid) if uid else None
 
+    def get_usuario_logado(self, uid):
+        return self.usuario_service.buscar_id(uid)
+
     def listar(self):
         uid = self.get_user_id()
         if not uid:
             return self.redirect('/login')
         profs = self.service.listar_aluno(uid)
-        return self.render('professores', professores=profs)
+        usuario = self.get_usuario_logado(uid)
+        return self.render('professores', professores=profs, usuario=usuario)
 
     def adicionar(self):
         uid = self.get_user_id()
@@ -36,12 +42,15 @@ class ProfessorController(BaseController):
             return self.redirect('/login')
 
         if request.method == 'GET':
-            return self.render('professor_form', professor=None, action='/professores/adicionar', erro=None)
+            usuario = self.usuario_service.buscar_id(uid)
+            return self.render('professor_form', professor=None, action='/professores/adicionar', erro=None, usuario=usuario)
 
-        nome = request.forms.get('nome')
+        nome = request.forms.get('nome').encode('latin-1').decode('utf-8')
         email = request.forms.get('email')
-        materia = request.forms.get('materia')
-        contato = request.forms.get('contato')
+        materia = request.forms.get('materia').encode(
+            'latin-1').decode('utf-8')
+        contato = request.forms.get('contato').encode(
+            'latin-1').decode('utf-8')
 
         novo_prof = Professor(nome, email, materia, contato, id_usuario=uid)
         self.service.cadastrar(novo_prof)
@@ -56,12 +65,15 @@ class ProfessorController(BaseController):
             return self.redirect('/professores')
 
         if request.method == 'GET':
-            return self.render('professor_form', professor=prof, action=f'/professores/editar/{id}', erro=None)
+            usuario = self.usuario_service.buscar_id(uid)
+            return self.render('professor_form', professor=prof, action=f'/professores/editar/{id}', erro=None, usuario=usuario)
 
-        nome = request.forms.get('nome')
+        nome = request.forms.get('nome').encode('latin-1').decode('utf-8')
         email = request.forms.get('email')
-        materia = request.forms.get('materia')
-        contato = request.forms.get('contato')
+        materia = request.forms.get('materia').encode(
+            'latin-1').decode('utf-8')
+        contato = request.forms.get('contato').encode(
+            'latin-1').decode('utf-8')
 
         prof_up = Professor(nome, email, materia, contato,
                             id_usuario=uid, id=id)

@@ -2,12 +2,14 @@ from bottle import request
 from controllers.base_controller import BaseController
 from models.nota import Nota
 from services.nota_service import NotaService
+from services.usuario_service import UsuarioService
 
 
 class NotaController(BaseController):
     def __init__(self, app):
         super().__init__(app)
         self.service = NotaService()
+        self.usuario_service = UsuarioService()
         self.setup_routes()
 
     def setup_routes(self):
@@ -26,7 +28,8 @@ class NotaController(BaseController):
         if not uid:
             return self.redirect('/login')
         notas = self.service.listar_aluno(uid)
-        return self.render('notas', notas=notas)
+        usuario = self.usuario_service.buscar_id(uid)
+        return self.render('notas', notas=notas, usuario=usuario)
 
     def adicionar(self):
         uid = self.get_user_id()
@@ -34,11 +37,14 @@ class NotaController(BaseController):
             return self.redirect('/login')
 
         if request.method == 'GET':
-            return self.render('nota_form', nota=None, action='/notas/adicionar', erro=None)
+            usuario = self.usuario_service.buscar_id(uid)
+            return self.render('nota_form', nota=None, action='/notas/adicionar', erro=None, usuario=usuario)
 
         try:
-            materia = request.forms.get('materia')
-            prova = request.forms.get('nome_prova')
+            materia = request.forms.get('materia').encode(
+                'latin-1').decode('utf-8')
+            prova = request.forms.get('nome_prova').encode(
+                'latin-1').decode('utf-8')
             valor = float(request.forms.get('valor'))
             nova_nota = Nota(materia, prova, valor, id_usuario=uid)
             self.service.cadastrar(nova_nota)
@@ -55,11 +61,14 @@ class NotaController(BaseController):
             return self.redirect('/notas')
 
         if request.method == 'GET':
-            return self.render('nota_form', nota=nota, action=f'/notas/editar/{id}', erro=None)
+            usuario = self.usuario_service.buscar_id(uid)
+            return self.render('nota_form', nota=nota, action=f'/notas/editar/{id}', erro=None, usuario=usuario)
 
         try:
-            materia = request.forms.get('materia')
-            prova = request.forms.get('nome_prova')
+            materia = request.forms.get('materia').encode(
+                'latin-1').decode('utf-8')
+            prova = request.forms.get('nome_prova').encode(
+                'latin-1').decode('utf-8')
             valor = float(request.forms.get('valor'))
             nota_up = Nota(materia, prova, valor, id_usuario=uid, id=id)
             self.service.atualizar(nota_up)
