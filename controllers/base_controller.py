@@ -24,15 +24,11 @@ class BaseController:
         if uid:
             usuario = self.usuario_service.buscar_id(int(uid))
 
-        # Renderiza a Landing Page
         return self.render('landing', usuario=usuario)
 
     def serve_static(self, filename):
         """Serve arquivos estáticos da pasta static/"""
-        base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        static_dir = os.path.join(base_path, 'static')
-
-        return static_file(filename, root=static_dir)
+        return static_file(filename, root='static')
 
     def render(self, template, **context):
         """Método auxiliar para renderizar templates"""

@@ -1,16 +1,12 @@
 from bottle import Bottle, response
 from config import Config
 
-
 class App:
     def __init__(self):
         self.bottle = Bottle()
         self.config = Config()
 
     def setup_routes(self):
-        @self.bottle.hook('after_request')
-        def enable_utf8():
-            response.headers['Content-Type'] = 'text/html; charset=UTF-8'
 
         from controllers import init_controllers
         print('🚀 Inicializa rotas!')
@@ -24,7 +20,6 @@ class App:
             debug=self.config.DEBUG,
             reloader=self.config.RELOADER
         )
-
 
 def create_app():
     return App()
