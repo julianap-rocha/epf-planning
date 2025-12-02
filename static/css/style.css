@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
 
+/*Principal*/
+
 :root {
     --primary: #ff4785;
     --primary-hover: #e63573;
@@ -261,6 +263,8 @@ footer {
     background: transparent;
 }
 
+/*Olhinho da Senha*/
+
 .password-wrapper {
     position: relative;
     margin-bottom: 1.5rem;
@@ -286,32 +290,40 @@ footer {
     color: var(--primary);
 }
 
+/*Modo Escuro*/
+
 body.dark-mode {
+    --primary: #b388ff;
+    --primary-hover: #d4b5ff;
+
     --bg-light: #13111c;
     --surface: #1f1b2e;
-    --text-gray: #cbd5e1;
-    --secondary: #94a3b8;
     --border: #3b3550;
-    --primary: #f472b6;
-    --primary-hover: #f9a8d4;
 
-    --shadow-soft: 0 10px 40px -5px rgba(0, 0, 0, 0.7);
+    --text-gray: #d5d4e8;
+    --secondary: #a6a4c7;
+
+    --shadow-soft: 0 10px 40px rgba(179, 136, 255, 0.25);
+
+    background-color: #13111c;
+    background-image: radial-gradient(var(--border) 1px, transparent 1px);
+    background-size: 20px 20px;
 }
 
 body.dark-mode .form-input {
-    background-color: #13111c;
+    background-color: #0d0b14;
     color: #fff;
-    border-color: #3b3550;
+    border-color: #3b3552;
 }
 
 body.dark-mode .form-input:focus {
+    background-color: #1a1526;
     border-color: var(--primary);
-    background-color: #1f1b2e;
 }
 
 body.dark-mode .btn-icon {
-    background-color: #2d2a3d;
-    color: #f472b6;
+    background-color: #251e36;
+    color: var(--primary);
 }
 
 body.dark-mode .btn-icon:hover {
@@ -320,20 +332,24 @@ body.dark-mode .btn-icon:hover {
 }
 
 body.dark-mode .main-header {
-    background: rgba(31, 27, 46, 0.85);
-    border-bottom: 1px solid #3b3550;
+    background: rgba(26, 21, 38, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
 }
 
 body.dark-mode .nav-link {
-    color: #e2e8f0;
+    color: var(--text-gray);
 }
+
 body.dark-mode .nav-link:hover {
     background-color: #2d2a3d;
+    color: var(--primary);
 }
 
 body.dark-mode .card {
     background-color: var(--surface) !important;
     border-color: var(--border) !important;
+    box-shadow: var(--shadow-soft) !important;
 }
 
 body.dark-mode .card * {
@@ -348,8 +364,13 @@ body.dark-mode .card-value {
 body.dark-mode .btn-primary,
 body.dark-mode .btn,
 body.dark-mode .btn-main {
-    background-color: inherit !important;
-    color: inherit !important;
-    border-color: inherit !important;
-    box-shadow: inherit !important;
+    background-color: var(--primary) !important;
+    color: #fff !important;
+    border-color: transparent !important;
+    box-shadow: 0 4px 12px rgba(179, 136, 255, 0.3) !important;
+}
+
+body.dark-mode .btn-primary:hover,
+body.dark-mode .btn:hover {
+    background-color: var(--primary-hover) !important;
 }
