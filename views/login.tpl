@@ -44,7 +44,11 @@
         <input type="email" name="email" class="form-input" required placeholder="aluno@email.com">
 
         <label class="form-label">SUA SENHA</label>
-        <input type="password" name="senha" class="form-input" required placeholder="••••••••">
+        <div class="password-wrapper">
+            <input type="password" name="senha" id="senhaLogin" class="form-input" required placeholder="••••••••">
+            <i class="fas fa-eye toggle-password" onclick="togglePassword('senhaLogin', this)"></i>
+        </div>
+
 
         <button type="submit" class="btn-block">Entrar no Sistema</button>
     </form>

@@ -6,7 +6,6 @@
     <title>Planning - {{title or 'App'}}</title>
     
     <link rel="stylesheet" href="/static/css/style.css?v=2">
-    <script src="/static/js/main.js"></script>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -17,6 +16,9 @@
         </a>
 
         <nav class="nav-gap">
+        <button id="theme-toggle" class="btn-icon" style="font-size: 1.2rem; margin-right: 10px;" title="Mudar Tema">
+                <i class="fas fa-moon"></i>
+            </button>
             % if defined('usuario') and usuario:
                 <div class="user-badge">
                     <i class="fas fa-user-circle"></i> {{usuario.nome.split()[0]}}
@@ -37,7 +39,6 @@
     <footer>
         <p>&copy; 2025 Planning - Juliana e Maeli.</p>
     </footer>
-
     <script src="/static/js/main.js"></script>
 </body>
 </html>

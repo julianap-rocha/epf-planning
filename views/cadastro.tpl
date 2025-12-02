@@ -7,10 +7,17 @@
     <form action="/cadastro" method="post">
         <label class="form-label">NOME COMPLETO</label>
         <input type="text" name="nome" class="form-input" required placeholder="Ex: Ana Silva">
+
         <label class="form-label">E-MAIL</label>
         <input type="email" name="email" class="form-input" required placeholder="seu@email.com">
+
         <label class="form-label">CRIE UMA SENHA</label>
-        <input type="password" name="senha" class="form-input" required placeholder="Uma senha segura">
+        <div class="password-wrapper">
+            <input type="password" name="senha" id="senhaCadastro" class="form-input" required placeholder="Uma senha segura">
+            <i class="fas fa-eye toggle-password" onclick="togglePassword('senhaCadastro', this)"></i>
+        </div>
+
+
         <button type="submit" class="btn-block" style="background: var(--secondary);">Cadastrar Agora</button>
     </form>
     <div style="text-align: center; margin-top: 1.5rem;">
