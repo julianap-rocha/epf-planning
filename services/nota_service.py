@@ -25,7 +25,8 @@ class NotaService:
         conn = get_db_connection()
         cursor = conn.cursor()
         cursor.execute(
-            "SELECT * FROM notas WHERE id_usuario = ?", (id_usuario,))
+            """SELECT * FROM notas WHERE id_usuario = ?
+            ORDER BY materia ASC, nome_prova ASC""", (id_usuario,))
         linhas = cursor.fetchall()
         conn.close()
 

@@ -20,7 +20,8 @@ class FaltaService:
         conn = get_db_connection()
         cursor = conn.cursor()
         cursor.execute(
-            "SELECT * FROM faltas WHERE id_usuario = ?", (id_usuario,))
+            """SELECT * FROM faltas WHERE id_usuario = ?
+            ORDER BY materia ASC, data DESC""", (id_usuario,))
         linhas = cursor.fetchall()
         conn.close()
 
