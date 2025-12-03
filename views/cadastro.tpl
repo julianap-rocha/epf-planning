@@ -13,7 +13,8 @@
 
         <label class="form-label">CRIE UMA SENHA</label>
         <div class="password-wrapper">
-            <input type="password" name="senha" id="senhaCadastro" class="form-input" required placeholder="Uma senha segura">
+            <input type="password" name="senha" id="senhaCadastro" class="form-input" required
+                placeholder="Uma senha segura">
             <i class="fas fa-eye toggle-password" onclick="togglePassword('senhaCadastro', this)"></i>
         </div>
 
@@ -21,6 +22,7 @@
         <button type="submit" class="btn-block" style="background: var(--secondary);">Cadastrar Agora</button>
     </form>
     <div style="text-align: center; margin-top: 1.5rem;">
-        <a href="/login" style="color: var(--text-gray); text-decoration: none; font-weight: 600;">Já tem conta? Fazer Login</a>
+        <a href="/login" style="color: var(--text-gray); text-decoration: none; font-weight: 600;">Já tem conta? Fazer
+            Login</a>
     </div>
 </div>

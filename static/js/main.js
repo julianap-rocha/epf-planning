@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.body.style.opacity = 1;
     }, 50);
 
+    /*Script pra visibilidade da senha*/
     const eyes = document.querySelectorAll('.toggle-password');
 
     eyes.forEach(eye => {
@@ -37,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+/*Script pro darkmode*/
 const themeBtn = document.getElementById('theme-toggle');
 const themeIcon = themeBtn ? themeBtn.querySelector('i') : null;
 
@@ -53,6 +55,8 @@ if (themeBtn) {
         document.body.classList.toggle('dark-mode');
 
         if (document.body.classList.contains('dark-mode')) {
+
+            /*Salva a preferencia do usuário*/
             localStorage.setItem('theme', 'dark');
             if (themeIcon) {
                 themeIcon.classList.remove('fa-moon');

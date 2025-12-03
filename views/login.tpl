@@ -22,8 +22,14 @@
     }
 
     @media (max-height: 700px) {
-        body { overflow: auto; }
-        .container { padding: 40px 1rem; align-items: flex-start; }
+        body {
+            overflow: auto;
+        }
+
+        .container {
+            padding: 40px 1rem;
+            align-items: flex-start;
+        }
     }
 </style>
 
@@ -34,9 +40,10 @@
     </div>
 
     % if defined('erro') and erro:
-        <div style="background: #fff5f5; color: var(--danger); padding: 1rem; border-radius: 16px; margin-bottom: 1.5rem; text-align: center; font-weight: 700;">
-            <i class="fas fa-exclamation-circle"></i> {{erro}}
-        </div>
+    <div
+        style="background: #fff5f5; color: var(--danger); padding: 1rem; border-radius: 16px; margin-bottom: 1.5rem; text-align: center; font-weight: 700;">
+        <i class="fas fa-exclamation-circle"></i> {{erro}}
+    </div>
     % end
 
     <form action="/login" method="post">
@@ -52,8 +59,9 @@
 
         <button type="submit" class="btn-block">Entrar no Sistema</button>
     </form>
-    
+
     <div style="text-align: center; margin-top: 1.5rem;">
-        <a href="/cadastro" style="color: var(--primary); text-decoration: none; font-weight: 700;">Não tem conta? Cadastre-se</a>
+        <a href="/cadastro" style="color: var(--primary); text-decoration: none; font-weight: 700;">Não tem conta?
+            Cadastre-se</a>
     </div>
 </div>
