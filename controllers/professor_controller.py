@@ -12,6 +12,7 @@ class ProfessorController(BaseController):
         self.usuario_service = UsuarioService()
         self.setup_routes()
 
+#conecta a rota a determinada função
     def setup_routes(self):
         self.app.route('/professores', 'GET', self.listar)
         self.app.route('/professores/adicionar',
@@ -20,14 +21,17 @@ class ProfessorController(BaseController):
                        ['GET', 'POST'], self.editar)
         self.app.route('/professores/excluir/<id:int>',
                        ['GET', 'POST'], self.excluir)
-
+        
+#valida o id do aluno
     def get_user_id(self):
         uid = request.get_cookie("user_session", secret='minha_chave_secreta')
         return int(uid) if uid else None
 
+#busca o usuario no banco de dados com o id fornecido
     def get_usuario_logado(self, uid):
         return self.usuario_service.buscar_id(uid)
-
+    
+#verifica o login, e busca os professores cadastrados por esse aluno
     def listar(self):
         uid = self.get_user_id()
         if not uid:
@@ -36,6 +40,7 @@ class ProfessorController(BaseController):
         usuario = self.get_usuario_logado(uid)
         return self.render('professores', professores=profs, usuario=usuario)
 
+#cadastra um novo professor e retorna para a lista de professores 
     def adicionar(self):
         uid = self.get_user_id()
         if not uid:
@@ -56,6 +61,7 @@ class ProfessorController(BaseController):
         self.service.cadastrar(novo_prof)
         return self.redirect('/professores')
 
+#carrega os dados do professor de foi cadastrados por determinado aluno, permite mudar as informaçoes e salva
     def editar(self, id):
         uid = self.get_user_id()
         if not uid:
@@ -80,6 +86,7 @@ class ProfessorController(BaseController):
         self.service.atualizar(prof_up)
         return self.redirect('/professores')
 
+#exclui um professor cadastrado
     def excluir(self, id):
         uid = self.get_user_id()
         if not uid:
